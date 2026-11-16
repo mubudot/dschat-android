@@ -19,7 +19,8 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: android-actions/setup-android@v3
+      - name: Android SDK info
+        run: echo "ANDROID_HOME=$ANDROID_HOME"; ls $ANDROID_HOME/platforms $ANDROID_HOME/build-tools || true
       - name: Build web
         run: |
           pnpm install --frozen-lockfile
