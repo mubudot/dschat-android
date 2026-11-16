@@ -7,7 +7,7 @@ android {
         applicationId "com.mubu.dschat"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode (System.getenv("GITHUB_RUN_NUMBER") ?: "1").toInteger()
+        versionCode Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER") ?: "1")
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -16,21 +16,8 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
-    signingConfigs {
-        release {
-            def ks = System.getenv("DSCHAT_KEYSTORE")
-            if (ks) {
-                storeFile file(ks)
-                storeType "pkcs12"
-                storePassword System.getenv("DSCHAT_KEYSTORE_PASSWORD")
-                keyAlias "dschat"
-                keyPassword System.getenv("DSCHAT_KEYSTORE_PASSWORD")
-            }
-        }
-    }
     buildTypes {
         release {
-            if (System.getenv("DSCHAT_KEYSTORE")) { signingConfig signingConfigs.release }
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
