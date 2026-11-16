@@ -47,7 +47,7 @@
     justify-content: flex-end;
     max-width: none;
     margin: 0;
-    padding: 0 16px env(safe-area-inset-bottom);
+    padding: 0 16px var(--app-safe-bottom);
   }
 
   .greeting {

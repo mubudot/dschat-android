@@ -293,7 +293,7 @@
     align-self: flex-end;
     width: 100%;
     max-width: none;
-    height: calc(100% - 64px);
+    height: calc(100% - max(64px, var(--app-safe-top) + 16px));
     max-height: 800px;
     border-radius: 24px 24px 0 0;
   }
@@ -330,7 +330,7 @@
   .content {
     padding-top: 24px;
     padding-left: 0;
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: var(--app-safe-bottom);
   }
 
   .text {

@@ -207,7 +207,10 @@
 }
 
 .mobile {
-  width: 300px;
+  /* 抽屉铺到状态栏下方，内容从安全区以下开始 */
+  padding-top: calc(6px + var(--app-safe-top));
+  padding-left: calc(12px + var(--app-safe-left));
+  width: calc(300px + var(--app-safe-left));
   max-width: calc(100vw - 48px);
 
   .listWrap {
@@ -222,7 +225,7 @@
 
   .bottom {
     height: auto;
-    padding: 12px 0;
+    padding: 12px 0 calc(12px + var(--app-safe-bottom));
   }
 
   .settings {

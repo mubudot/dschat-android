@@ -3,7 +3,16 @@
   inset: 0;
   display: flex;
   overflow: hidden;
+  box-sizing: border-box;
+  /* 顶部/左右避开状态栏、刘海；移动端底部由输入区自己留安全区 */
+  padding: var(--app-safe-top) var(--app-safe-right) 0 var(--app-safe-left);
   background-color: var(--dsw-alias-bg-base);
+}
+
+@media (min-width: 768px) {
+  .frame {
+    padding-bottom: var(--app-safe-bottom);
+  }
 }
 
 .main {

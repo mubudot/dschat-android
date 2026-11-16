@@ -1,4 +1,5 @@
 import { useSyncExternalStore } from 'react'
+import { Capacitor, SystemBars, SystemBarsStyle } from '@capacitor/core'
 import { useSettings, type ThemePreference } from '../services/settings.js'
 
 export type Theme = 'light' | 'dark'
@@ -41,6 +42,12 @@ const applyTheme = (theme: Theme) => {
     body.removeAttribute('data-ds-dark-theme')
   }
   document.documentElement.style.colorScheme = theme
+  // Android 壳：状态栏/手势条图标颜色跟随应用深浅色（深色主题用浅色图标）
+  if (Capacitor.isNativePlatform()) {
+    void SystemBars.setStyle({
+      style: theme === 'dark' ? SystemBarsStyle.Dark : SystemBarsStyle.Light,
+    }).catch(() => {})
+  }
   // 首次背景色同步在样式表加载完成后执行，适配 WebKit 的 defer 脚本执行顺序。
   if (document.readyState === 'complete') {
     syncPageBackground()
